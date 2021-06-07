@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
     //                         });
     //                     });
     // console.log("RESPONSE: ", response);
-    var map = new Map(); 
+    let map = new Map(); 
     oboe('https://restcountries.eu/rest/v2/all')
       .node('currencies.*', function( currency ){
         if (map.has(currency.name)){
@@ -42,23 +42,21 @@ router.get('/', async (req, res) => {
    });
 });
 
-router.get('/gettimediff/', (req, res) => {
+// router.get('/gettimediff/', (req, res) => {
 
-  let c1alpha3Code = "BDI.alpha3Code";
-  let c2alpha3Code = "LAO";
-  oboe('https://restcountries.eu/rest/v2/all')
-    .node(c1alpha3Code+'.alpha3Code', function( c1alpha3Code ){
-      console.log(c1alpha3Code);
-    })
-    .node(c2alpha3Code+'alpha3Code', function(c2alpha3Code ){
-      console.log(c2alpha3Code);
-  })    
-    .done(function(things){
-      // res.send(getByValue(map, 2));
-      res.send(404);
-   });
-
-  
-});
+//   let c1alpha3Code = "BDI.alpha3Code";
+//   let c2alpha3Code = "LAO";
+//   oboe('https://restcountries.eu/rest/v2/all')
+//     .node(c1alpha3Code+'.alpha3Code', function( c1alpha3Code ){
+//       console.log(c1alpha3Code);
+//     })
+//     .node(c2alpha3Code+'alpha3Code', function(c2alpha3Code ){
+//       console.log(c2alpha3Code);
+//   })    
+//     .done(function(things){
+//       // res.send(getByValue(map, 2));
+//       res.send(404);
+//    });
+// });
 
 module.exports = router;
