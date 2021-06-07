@@ -14,8 +14,8 @@ function getByValue(map, searchValue) {
 }
 
 router.get('/', async (req, res) => {
-    const apiURL = `https://restcountries.eu/rest/v2/all`;
-    console.log("apitesting");
+    // const apiURL = `https://restcountries.eu/rest/v2/all`;
+    // console.log("apitesting");
     // const options = {
     //     "method": "GET"
     // };
