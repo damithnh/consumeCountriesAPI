@@ -37,7 +37,7 @@ router.get('/', async (req, res) => {
             map.set(currency.name, 1); 
         }
     })   
-    .done(function(currency){
+    .done(function(){
       res.send(getByValue(map, 2));
    });
 });
