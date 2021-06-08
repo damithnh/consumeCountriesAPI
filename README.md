@@ -10,3 +10,4 @@
 			Get time difference between countries. Above example returns time difference between Afganistan and Sri Lanka
 		/region?region=Asia
 			Get all countries in a region sorted by population. Above example returns all countries in Asia
+			(There's a bug in this method. It works in synchronous mode, but doesn't work in asynchronous mode)
