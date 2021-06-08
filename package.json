@@ -10,7 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "express": "^4.17.1",
+    "jsonfile": "^6.1.0",
+    "jsonpath-plus": "^5.0.7",
     "node-fetch": "^2.6.1",
     "oboe": "^2.1.5"
   }
