@@ -29,22 +29,28 @@ function getRegionCountries(data, region) {
   }
 
 router.get("", async (req, res) => {
-let region = req.query.region;
-const apiURL = `https://restcountries.eu/rest/v2/all`;
-const options = {
+  let region = req.query.region;
+  region = region.charAt(0).toUpperCase() + region.slice(1);
+  const apiURL = `https://restcountries.eu/rest/v2/all`;
+  const options = {
     method: "GET",
-};
-const response = await fetch(apiURL, options)
-    .then((res) => res.json())
-    // .then((res.json()) => console.log(res.json())
-    //.then(res.send(getRegionCountries(await response, 'asia')))
-    .catch((e) => {
-    console.error({
-        error: e,
-    });
-    });
-// console.log("RESPONSE: ", response);
-res.send(getRegionCountries(response, region));
+    };
+  const response = await fetch(apiURL, options)
+      .then((res) => res.json())
+      // .then((res.json()) => console.log(res.json())
+      //.then(res.send(getRegionCountries(await response, 'asia')))
+      .catch((e) => {
+      console.error({
+          error: e,
+      });
+      });
+  // console.log("RESPONSE: ", response);
+  let testVar = await getRegionCountries(response, region);
+  const obj = Object.fromEntries(testVar);
+  // let testVar = await testAsync1(response, 'region', 'Asia');
+  console.log(testVar);
+  // return testVar;
+  res.json(obj);
 });
 
 module.exports = router;
