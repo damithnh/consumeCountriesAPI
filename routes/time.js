@@ -19,6 +19,7 @@ function searchJSON(content, key, value) {
   }
   
   function calculateTimeDiff(data, country1, country2) {
+    let map = new Map();
     const c1 = searchJSON(data, "alpha3Code", country1);
     const c2 = searchJSON(data, "alpha3Code", country2);
   
@@ -41,28 +42,28 @@ function searchJSON(content, key, value) {
       let date2 = "2019/10/01" + parseInt(t4[0]) + ":" + parseInt(t4[1]) + ":00";
   
       const diffInMilliseconds = Math.abs(new Date(date1) - new Date(date2));
-      console.log(preZero(Math.floor(diffInMilliseconds / (1000 * 60 * 60))));
-      console.log(preZero(diffInMilliseconds / (1000 * 60 * 60) - Math.floor(diffInMilliseconds / (1000 * 60 * 60)))*60);
+      // console.log(preZero(Math.floor(diffInMilliseconds / (1000 * 60 * 60))));
+      // console.log(preZero(diffInMilliseconds / (1000 * 60 * 60) - Math.floor(diffInMilliseconds / (1000 * 60 * 60)))*60);
       
       if (diffInMilliseconds / (1000 * 60) >= 60) {
-        console.log(
-          `${preZero(Math.floor(diffInMilliseconds / (1000 * 60 * 60)))}`
-        );
-        return `Time Differemce: ${preZero(
+        // console.log(
+        //   `${preZero(Math.floor(diffInMilliseconds / (1000 * 60 * 60)))}`
+        // );
+        return `${preZero(
           Math.floor(diffInMilliseconds / (1000 * 60 * 60))
-        )}:${preZero(diffInMilliseconds / (1000 * 60 * 60) - Math.floor(diffInMilliseconds / (1000 * 60 * 60)))*60}`;
-      } else console.log(preZero(diffInMilliseconds / (1000 * 60) + " mins"));
-      return `Time Differemce: ${preZero(diffInMilliseconds / (1000 * 60))} mins`;
+        )}:${preZero((diffInMilliseconds / (1000 * 60 * 60) - Math.floor(diffInMilliseconds / (1000 * 60 * 60)))*60)}`;
+      } else {
+      // console.log(preZero(diffInMilliseconds / (1000 * 60) + " mins"));
+      return `${preZero(diffInMilliseconds / (1000 * 60))} mins`;
+      }
     } else {
       console.log("both have differenct signs");
-      let date1 = "2019/10/1" + parseInt(t3[0]) + ":" + parseInt(t3[1]) + ":00";
-      let date2 = "2019/10/1" + parseInt(t4[0]) + ":" + parseInt(t4[1]) + ":00";
   
       let hours = parseInt(t3[0]) + parseInt(t4[0]);
       let minutes = parseInt(t3[1]) + parseInt(t4[1]);
   
       console.log(`${preZero(hours)}:${preZero(minutes)}`);
-      return `Time Differemce: ${preZero(hours)}:${preZero(minutes)}`;
+      return `${preZero(hours)}:${preZero(minutes)}`;
     }
   }
 
@@ -82,8 +83,10 @@ router.get("", async (req, res) => {
       });
     });
   // console.log("RESPONSE: ", response);
-
-  res.send(calculateTimeDiff(response, c1alpha3Code, c2alpha3Code));
+  const obj = {
+    "Time Difference" : await calculateTimeDiff(response, c1alpha3Code, c2alpha3Code)
+  };
+  res.json(obj);
 });
 
 module.exports = router;
