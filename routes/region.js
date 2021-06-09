@@ -5,8 +5,8 @@ const oboe = require("oboe");
 const axios = require('axios');
 
 function searchJSON(content, key, value) {
-    var result = [];
-    for (var i in content) {
+    let result = [];
+    for (let i in content) {
       if (content[i][key] == value) {
         result.push(content[i]);
       }
