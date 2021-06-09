@@ -4,7 +4,7 @@
 
 	http://localhost:3000
 		
-		/api/currency
+		/api/currencies
                     Get all currency symbols that are used by more than one country
 		/api/timedifference
 		/api/timedifference?country1=AFG&country2=LKA

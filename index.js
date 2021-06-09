@@ -3,7 +3,7 @@ const app = express();
 app.use(express.json());
 
 const currency = require('./routes/currency');
-app.use('/api/currency', currency);
+app.use('/api/currencies', currency);
 
 const time = require('./routes/time');
 app.use('/api/timedifference', time);

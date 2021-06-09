@@ -37,19 +37,20 @@ function searchJSON(content, key, value) {
     ) {
       console.log("both have same sign");
   
-      let date1 = "2019/10/1" + parseInt(t3[0]) + ":" + parseInt(t3[1]) + ":00";
-      let date2 = "2019/10/1" + parseInt(t4[0]) + ":" + parseInt(t4[1]) + ":00";
+      let date1 = "2019/10/01" + parseInt(t3[0]) + ":" + parseInt(t3[1]) + ":00";
+      let date2 = "2019/10/01" + parseInt(t4[0]) + ":" + parseInt(t4[1]) + ":00";
   
       const diffInMilliseconds = Math.abs(new Date(date1) - new Date(date2));
+      console.log(preZero(Math.floor(diffInMilliseconds / (1000 * 60 * 60))));
+      console.log(preZero(diffInMilliseconds / (1000 * 60 * 60) - Math.floor(diffInMilliseconds / (1000 * 60 * 60)))*60);
+      
       if (diffInMilliseconds / (1000 * 60) >= 60) {
         console.log(
-          `${preZero(diffInMilliseconds / (1000 * 60 * 60))}:${preZero(
-            diffInMilliseconds % (1000 * 60 * 60)
-          )}`
+          `${preZero(Math.floor(diffInMilliseconds / (1000 * 60 * 60)))}`
         );
         return `Time Differemce: ${preZero(
-          diffInMilliseconds / (1000 * 60 * 60)
-        )}:${preZero(diffInMilliseconds % (1000 * 60 * 60))}`;
+          Math.floor(diffInMilliseconds / (1000 * 60 * 60))
+        )}:${preZero(diffInMilliseconds / (1000 * 60 * 60) - Math.floor(diffInMilliseconds / (1000 * 60 * 60)))*60}`;
       } else console.log(preZero(diffInMilliseconds / (1000 * 60) + " mins"));
       return `Time Differemce: ${preZero(diffInMilliseconds / (1000 * 60))} mins`;
     } else {
